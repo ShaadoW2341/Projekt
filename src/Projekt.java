@@ -67,9 +67,9 @@ public class Projekt extends JFrame{
                    Gracz.getGracz().addXp(xp);
                    Gracz.getGracz().addGold(iloscZlota);
                    enemysKilled();
-                   if(killedenemies>=5){
+                   if(killedenemies>=6){
                        miastoButton.setEnabled(true);
-                       if(killedenemies==5)
+                       if(killedenemies==6)
                        JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!");
                    }
                    newEnemy.setText("Następny Przeciwnik");
@@ -112,11 +112,12 @@ public class Projekt extends JFrame{
                         return;
                     }
                     SetUIForGamer();
-                    enemy1 = GenerateNewEnemy();
+                    enemy1 = GenerateNewEnemy1();
                     SetUIForNewEnemy();
+
                 }
                 else{
-                    enemy1 = GenerateNewEnemy();
+                    enemy1 = GenerateNewEnemy1();
                     SetUIForNewEnemy();
                 }
             }
@@ -155,13 +156,22 @@ public class Projekt extends JFrame{
         Stats.setText(WyborKlasy.getPlayerName());
     }
 
-    private Enemy GenerateNewEnemy(){
+    private Enemy GenerateNewEnemy1(){
         Random random = new Random();
-        int wylosowanaLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
-
-        return EnemyEasyConsts.GetEnemy(wylosowanaLiczba);
+        int wylosowanaLiczba = random.nextInt(EnemyEasyConsts.getEnemyList1Length());
+        if(killedenemies<5) {
+            return EnemyEasyConsts.GetEnemy(wylosowanaLiczba);
+        } else if (killedenemies==5) {
+            return boss1();
+        }
+        else {
+            int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
+            return EnemyEasyConsts.GetMidEnemy(wylosowanaMidLiczba);
+        }
     }
-
+    private Enemy boss1(){
+        return EnemyEasyConsts.GetCustomEnemy(0);
+    }
 
     private void enemysKilled()
     {

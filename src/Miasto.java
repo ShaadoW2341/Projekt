@@ -54,7 +54,7 @@ public class Miasto extends JFrame {
                 }
                 if(Gracz.getGracz().gold>=100){
                     Gracz.getGracz().gold -= 100;
-                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + 3);
+                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + armor.getArmorPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                     Gracz.getGracz().setArmor(armor);
 
@@ -67,9 +67,14 @@ public class Miasto extends JFrame {
         armorH.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Armor armor = new Armor(10, 3);
+                if(!Gracz.getGracz().canSetArmor(armor)){
+                    JOptionPane.showMessageDialog(null, "Posiadasz ten pancerz albo wyższy");
+                    return;
+                }
                 if(Gracz.getGracz().gold>=1800){
                     Gracz.getGracz().gold -= 1800;
-                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + 10);
+                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + armor.getArmorPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                 }
                 else{
@@ -80,9 +85,14 @@ public class Miasto extends JFrame {
         armorM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Armor armor = new Armor(6, 2);
+                if(!Gracz.getGracz().canSetArmor(armor)){
+                    JOptionPane.showMessageDialog(null, "Posiadasz ten pancerz albo wyższy");
+                    return;
+                }
                 if(Gracz.getGracz().gold>=700){
                     Gracz.getGracz().gold -= 700;
-                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + 6);
+                    Gracz.getGracz().setObrona(Gracz.getGracz().getObrona() + armor.getArmorPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                 }
                 else{
