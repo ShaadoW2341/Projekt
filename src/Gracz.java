@@ -1,0 +1,115 @@
+import Enums.PotionType;
+import Execptions.ClassNotChoosenException;
+
+import java.util.ArrayList;
+
+public class Gracz extends Postac
+{
+    private static Gracz gracz;
+    public Lvl lvl;
+    public int xp;
+    public int gold;
+    private final ArrayList<Potion> ekwipunek = new ArrayList<>();
+    private Armor armor;
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
+    public boolean canSetArmor(Armor armor){
+        if(this.armor==null) return true;
+        else if(this.armor.getArmorTier()< armor.getArmorTier()) return true;
+        else return false;
+    }
+
+    private Gracz(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
+    {
+        super(iloscZycia, obrona, mocAtaku, klasa);
+        lvl = new Lvl(0);
+        ekwipunek.add(new Potion(PotionType.SmallHp));
+    }
+
+    public static Gracz StworzGracza(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
+    {
+        gracz = new Gracz(iloscZycia, obrona,mocAtaku, klasa);
+        return  gracz;
+    }
+
+    public void AttackByEnemy(Enemy enemy)
+    {
+        if (enemy == null)
+            return;
+
+        var attackHp = enemy.getMocAtaku() - this.getObrona();
+
+        if (attackHp < 0)
+            attackHp = 0;
+
+        if (super.getIloscZycia() - attackHp < 0){
+            setIloscZycia(0);
+            return;
+        }
+
+        this.setIloscZycia(super.getIloscZycia() - attackHp); ;
+    }
+
+
+    public static Gracz getGracz(){
+        return gracz;
+    }
+
+    public void addXp(int xp){
+        if (Lvl.isNextLevelAvalible(this.xp, this.xp + xp ))
+            this.lvl = new Lvl(this.xp + xp);
+
+        this.xp += xp;
+    }
+
+    public void addGold(int gold){
+        this.gold += gold;
+    }
+
+    public int getXp(){
+        return xp;
+    }
+
+    public int getGold() {return gold;}
+
+    public void usePotion(PotionType typ){
+        
+        Potion selectedPotion = null;
+
+        for (var potion: this.ekwipunek) {
+            if (potion.getType().equals(typ)){
+                selectedPotion = potion;
+                this.setIloscZycia(this.getIloscZycia() + selectedPotion.getPowerOfPotion());
+            }
+        }
+        
+        if (selectedPotion == null)
+            return;
+
+        ekwipunek.remove(selectedPotion);
+    }
+    
+    public String getEqDescription(){
+        var sb = new StringBuilder();
+
+        for (var i = 0; i < ekwipunek.size(); i++) {
+            sb.append(ekwipunek.get(i).toString());
+            if (i != ekwipunek.size() - 1)
+                sb.append(", ");
+        }
+
+        return sb.toString();
+    }
+
+    public void addPotion(PotionType potionType){
+        ekwipunek.add(new Potion(potionType));
+    }
+
+}
