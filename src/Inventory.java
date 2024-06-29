@@ -127,7 +127,7 @@ public class Inventory extends JFrame {
     private void  SetUIForGamer(){
         var gamer = Gracz.getGracz();
         eq.setText(gamer.getEqDescription());
-        lvlLabel.setText("Punkty LVL: " + gamer.lvl.getLvl());
+        lvlLabel.setText("Punkty LVL: " + gamer.lvl.getPoints());
         gamerXp.setText(String.valueOf(gamer.getXp()));
         gamerHp.setText(String.valueOf(String.valueOf(gamer.getIloscZycia())) + "/" + String.valueOf(gamer.getMaxIloscZycia()));
         gamerAttack.setText(String.valueOf(gamer.getMocAtaku()));

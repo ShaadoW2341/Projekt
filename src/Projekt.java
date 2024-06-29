@@ -35,93 +35,92 @@ public class Projekt extends JFrame{
         this.setLocationRelativeTo(null);
         this.setSize(width,height);
         this.setVisible(true);
-        try {
-            this.setContentPane(this.panel1);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setSize(width, height);
+        this.setContentPane(this.panel1);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(width, height);
 
-            if (enemy1 == null)
-                enemy1 = new Enemy(10, 2, 1, "Bartek",100 ,Klasa.wojownik);
+        if (enemy1 == null)
+            enemy1 = EnemyEasyConsts.GetEnemy(0);
 
-            if (enemy1 != null&&(enemy1.isEnemyDead()||enemy1.isEnemyDeadAndGatheredXp())){
-                newEnemy.setText("Następny przeciwnik");
-            }
-
-            SetUIForNewEnemy();
-            SetUIForGamer();
-
-            if(killedenemies>=5){
-                miastoButton.setEnabled(true);
-            }
-
-            Atak.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                   enemy1.AttackByGamer(Gracz.getGracz());
-
-                   if (enemy1.isEnemyDead() && !enemy1.isEnemyDeadAndGatheredXp()){
-                       int xp = enemy1.getXp();
-                       Random random = new Random();
-                       int iloscZlota = random.nextInt(20)+10;
-                       przeciwnik.setText(enemy1.getNazwa()+ " wypuścił "+ iloscZlota + " złota");
-                       Gracz.getGracz().addXp(xp);
-                       Gracz.getGracz().addGold(iloscZlota);
-                       enemysKilled();
-                       if(killedenemies>=5){
-                           miastoButton.setEnabled(true);
-                       }
-                       newEnemy.setText("Następny Przeciwnik");
-                   }
-
-                   else if (!enemy1.isEnemyDead()){
-                       Gracz gracz = Gracz.getGracz();
-                       gracz.AttackByEnemy(enemy1);
-
-                       if (!gracz.getStatus().equals(CharacterStatus.Alive)){
-                           SetUIForGamer();
-                           JOptionPane.showMessageDialog(null, "Umarłeś");
-                           enemy1 = null;
-                           new WyborKlasy();
-                           dispose();
-                           return;
-                       }
-                   }
-
-                   SetUIForGamer();
-
-                   enemyHpBar.setValue(enemy1.getIloscZycia());
-                   Hp.setText("Hp: " + enemy1.getIloscZycia());
-                }
-            });
-            newEnemy.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Gracz gracz = Gracz.getGracz();
-                        newEnemy.setText("Uciekaj");
-                    if(!enemy1.isEnemyDead() && enemy1.getKlasa() == Klasa.lucznik) {
-                        gracz.AttackByEnemy(enemy1);
-                        if (!gracz.getStatus().equals(CharacterStatus.Alive)){
-                            SetUIForGamer();
-                            JOptionPane.showMessageDialog(null, "Umarłeś");
-                            enemy1 = null;
-                            new WyborKlasy();
-                            dispose();
-                            return;
-                        }
-                        SetUIForGamer();
-                        enemy1 = GenerateNewEnemy();
-                        SetUIForNewEnemy();
-                    }
-                    else{
-                        enemy1 = GenerateNewEnemy();
-                        SetUIForNewEnemy();
-                    }
-                }
-            });
-        }catch (CustomExcepiton ex){
-
+        if (enemy1 != null&&(enemy1.isEnemyDead()||enemy1.isEnemyDeadAndGatheredXp())){
+            newEnemy.setText("Następny przeciwnik");
         }
+
+        SetUIForNewEnemy();
+        SetUIForGamer();
+
+        if(killedenemies>=5&&enemy1.isEnemyDead()){
+            miastoButton.setEnabled(true);
+        }
+
+        Atak.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+               enemy1.AttackByGamer(Gracz.getGracz());
+
+               if (enemy1.isEnemyDead() && !enemy1.isEnemyDeadAndGatheredXp()){
+                   int xp = enemy1.getXp();
+                   Random random = new Random();
+                   int iloscZlota = random.nextInt(20)+10;
+                   przeciwnik.setText(enemy1.getNazwa()+ " wypuścił "+ iloscZlota + " złota");
+                   Gracz.getGracz().addXp(xp);
+                   Gracz.getGracz().addGold(iloscZlota);
+                   enemysKilled();
+                   if(killedenemies>=5){
+                       miastoButton.setEnabled(true);
+                       if(killedenemies==5)
+                       JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!");
+                   }
+                   newEnemy.setText("Następny Przeciwnik");
+               }
+
+               else if (!enemy1.isEnemyDead()){
+                   Gracz gracz = Gracz.getGracz();
+                   gracz.AttackByEnemy(enemy1);
+                   miastoButton.setEnabled(false);
+
+                   if (!gracz.getStatus().equals(CharacterStatus.Alive)){
+                       SetUIForGamer();
+                       JOptionPane.showMessageDialog(null, "Umarłeś");
+                       enemy1 = null;
+                       new WyborKlasy();
+                       dispose();
+                       return;
+                   }
+               }
+
+               SetUIForGamer();
+
+               enemyHpBar.setValue(enemy1.getIloscZycia());
+               Hp.setText("Hp: " + enemy1.getIloscZycia());
+            }
+        });
+        newEnemy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gracz gracz = Gracz.getGracz();
+                    newEnemy.setText("Uciekaj");
+                if(!enemy1.isEnemyDead() && enemy1.getKlasa() == Klasa.lucznik) {
+                    gracz.AttackByEnemy(enemy1);
+                    if (!gracz.getStatus().equals(CharacterStatus.Alive)){
+                        SetUIForGamer();
+                        JOptionPane.showMessageDialog(null, "Umarłeś");
+                        enemy1 = null;
+                        new WyborKlasy();
+                        dispose();
+                        return;
+                    }
+                    SetUIForGamer();
+                    enemy1 = GenerateNewEnemy();
+                    SetUIForNewEnemy();
+                }
+                else{
+                    enemy1 = GenerateNewEnemy();
+                    SetUIForNewEnemy();
+                }
+            }
+        });
         Inventory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

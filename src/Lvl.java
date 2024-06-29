@@ -1,32 +1,34 @@
+import java.util.ArrayList;
+
 public class Lvl
 {
+
     private int level;
-    private boolean isUsed;
+    private static ArrayList<Integer> points = new ArrayList<Integer>();
 
     public Lvl(int xp){
         level = GetLvl(xp);
-        if (level == 0)
-            isUsed = true;
-        else
-            isUsed = false;
+        if (level != 0)
+            points.add(1);
     }
 
     public static boolean isNextLevelAvalible(int oldXp, int newXp){
         return  GetLvl(oldXp) < GetLvl(newXp);
     }
 
-    public int getLvl(){
-        return level;
+    public int getPoints(){
+        return points.size();
     }
 
     public boolean isUsed()
     {
-        return isUsed;
+        return points.size() == 0;
     }
 
     public void setIsUsed()
     {
-        isUsed = true;
+        if (points.size() > 0)
+            points.remove(points.size() - 1);
     }
 
 
