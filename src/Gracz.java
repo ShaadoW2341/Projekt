@@ -11,10 +11,7 @@ public class Gracz extends Postac
     public int gold;
     private final ArrayList<Potion> ekwipunek = new ArrayList<>();
     private Armor armor;
-
-    public Armor getArmor() {
-        return armor;
-    }
+    private Sword sword;
 
     public void setArmor(Armor armor) {
         this.armor = armor;
@@ -25,6 +22,12 @@ public class Gracz extends Postac
         else if(this.armor.getArmorTier()< armor.getArmorTier()) return true;
         else return false;
     }
+    public boolean canSetSword(Sword sword){
+        if(this.sword==null) return true;
+        else if(this.sword.getSwordTier()< sword.getSwordTier()) return true;
+        else return false;
+    }
+
 
     private Gracz(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
     {
@@ -44,7 +47,7 @@ public class Gracz extends Postac
         if (enemy == null)
             return;
 
-        var attackHp = enemy.getMocAtaku() - this.getObrona();
+        var attackHp = enemy.getMocAtaku() - this.getRandomObrona();
 
         if (attackHp < 0)
             attackHp = 0;
@@ -76,8 +79,6 @@ public class Gracz extends Postac
     public int getXp(){
         return xp;
     }
-
-    public int getGold() {return gold;}
 
     public void usePotion(PotionType typ){
         

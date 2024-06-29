@@ -1,6 +1,8 @@
 import Enums.CharacterStatus;
 import Execptions.ClassNotChoosenException;
 
+import java.util.Random;
+
 public class Postac {
     private Klasa klasa;
     private int iloscZycia;
@@ -82,6 +84,12 @@ public class Postac {
 
     public void setMocAtaku(int mocAtaku) {
         this.mocAtaku = mocAtaku;
+    }
+
+    public int getRandomObrona(){
+        Random random = new Random();
+        int minObrona = obrona/2;
+        return random.nextInt(obrona - minObrona + 1) + minObrona;
     }
 
 }

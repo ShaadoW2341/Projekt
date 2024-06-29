@@ -142,9 +142,14 @@ public class Miasto extends JFrame {
         swordL.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sword sword = new Sword(2, 1);
+                if(!Gracz.getGracz().canSetSword(sword)){
+                    JOptionPane.showMessageDialog(null, "Posiadasz ten miecz albo lepszy");
+                    return;
+                }
                 if(Gracz.getGracz().gold>=200){
                     Gracz.getGracz().gold -= 200;
-                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+2);
+                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                 }
                 else{
@@ -155,9 +160,14 @@ public class Miasto extends JFrame {
         swordM.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sword sword = new Sword(5, 2);
+                if(!Gracz.getGracz().canSetSword(sword)){
+                    JOptionPane.showMessageDialog(null, "Posiadasz ten miecz albo lepszy");
+                    return;
+                }
                 if(Gracz.getGracz().gold>=800){
                     Gracz.getGracz().gold -= 800;
-                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+5);
+                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                 }
                 else{
@@ -168,9 +178,14 @@ public class Miasto extends JFrame {
         swordH.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sword sword = new Sword(10, 3);
+                if(!Gracz.getGracz().canSetSword(sword)){
+                    JOptionPane.showMessageDialog(null, "Posiadasz ten miecz albo lepszy");
+                    return;
+                }
                 if(Gracz.getGracz().gold>=2000){
                     Gracz.getGracz().gold -= 2000;
-                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+10);
+                    Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
                 }
                 else{

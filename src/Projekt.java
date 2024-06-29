@@ -83,6 +83,7 @@ public class Projekt extends JFrame{
                    if (!gracz.getStatus().equals(CharacterStatus.Alive)){
                        SetUIForGamer();
                        JOptionPane.showMessageDialog(null, "Umarłeś");
+                       killedenemies=0;
                        enemy1 = null;
                        new WyborKlasy();
                        dispose();
@@ -106,6 +107,7 @@ public class Projekt extends JFrame{
                     if (!gracz.getStatus().equals(CharacterStatus.Alive)){
                         SetUIForGamer();
                         JOptionPane.showMessageDialog(null, "Umarłeś");
+                        killedenemies=0;
                         enemy1 = null;
                         new WyborKlasy();
                         dispose();
@@ -163,8 +165,10 @@ public class Projekt extends JFrame{
             return EnemyEasyConsts.GetEnemy(wylosowanaLiczba);
         } else if (killedenemies==5) {
             return boss1();
-        }
-        else {
+        } else if (killedenemies%6==0) {
+            int wylosowanaBossLiczba = random.nextInt(EnemyEasyConsts.getBossListLength());
+            return EnemyEasyConsts.GetBossEnemy(wylosowanaBossLiczba);
+        } else {
             int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
             return EnemyEasyConsts.GetMidEnemy(wylosowanaMidLiczba);
         }

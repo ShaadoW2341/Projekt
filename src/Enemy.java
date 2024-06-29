@@ -30,7 +30,7 @@ public class Enemy extends Postac{
     }
 
     public void AttackByGamer(Gracz gracz){
-        int attackHp = gracz.getMocAtaku() - this.getObrona();
+        int attackHp = gracz.getMocAtaku() - this.getRandomObrona();
 
         if (attackHp < 0)
             attackHp = 0;
