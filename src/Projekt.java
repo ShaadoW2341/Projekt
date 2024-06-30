@@ -26,9 +26,11 @@ public class Projekt extends JFrame{
     private JLabel DEF;
     private JLabel enemyClass;
     private JLabel Stats;
+    private JLabel goldValue;
     private static int killedenemies;
     int width = 600, height = 400;
     private static Enemy enemy1;
+    private int goldFromBoss = 100;
 
     public Projekt()
     {
@@ -69,8 +71,10 @@ public class Projekt extends JFrame{
                    enemysKilled();
                    if(killedenemies>=6){
                        miastoButton.setEnabled(true);
-                       if(killedenemies==6)
-                       JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!");
+                       if(killedenemies==6) {
+                           JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!\n Za pokonanie Królowej otrzymujesz 100 złota");
+                           Gracz.getGracz().addGold(goldFromBoss);;
+                       }
                    }
                    newEnemy.setText("Następny Przeciwnik");
                }
@@ -156,6 +160,7 @@ public class Projekt extends JFrame{
         gamerAttack.setText(String.valueOf(gamer.getMocAtaku()));
         gamerDef.setText(String.valueOf(gamer.getObrona()));
         Stats.setText(WyborKlasy.getPlayerName());
+        goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
     }
 
     private Enemy GenerateNewEnemy1(){
@@ -165,12 +170,17 @@ public class Projekt extends JFrame{
             return EnemyEasyConsts.GetEnemy(wylosowanaLiczba);
         } else if (killedenemies==5) {
             return boss1();
-        } else if (killedenemies%6==0) {
+        } else if (killedenemies%5==0) {
             int wylosowanaBossLiczba = random.nextInt(EnemyEasyConsts.getBossListLength());
+            Gracz.getGracz().addGold(goldFromBoss);
             return EnemyEasyConsts.GetBossEnemy(wylosowanaBossLiczba);
-        } else {
+        } else if(killedenemies<=30){
             int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
             return EnemyEasyConsts.GetMidEnemy(wylosowanaMidLiczba);
+        }
+        else {
+            int wylosowanaHardLiczba = random.nextInt(EnemyEasyConsts.getEnemyHardListLength());
+            return EnemyEasyConsts.GetHardEnemy(wylosowanaHardLiczba);
         }
     }
     private Enemy boss1(){

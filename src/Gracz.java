@@ -17,6 +17,8 @@ public class Gracz extends Postac
         this.armor = armor;
     }
 
+    public void setSword(Sword sword){this.sword = sword;}
+
     public boolean canSetArmor(Armor armor){
         if(this.armor==null) return true;
         else if(this.armor.getArmorTier()< armor.getArmorTier()) return true;
@@ -33,7 +35,7 @@ public class Gracz extends Postac
     {
         super(iloscZycia, obrona, mocAtaku, klasa);
         lvl = new Lvl(0);
-        ekwipunek.add(new Potion(PotionType.SmallHp));
+        ekwipunek.add(new Potion(PotionType.MediumHp));
     }
 
     public static Gracz StworzGracza(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException

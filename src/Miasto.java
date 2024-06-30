@@ -151,6 +151,7 @@ public class Miasto extends JFrame {
                     Gracz.getGracz().gold -= 200;
                     Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
+                    Gracz.getGracz().setSword(sword);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Nie posiadasz wystarczająco złota");
@@ -169,6 +170,7 @@ public class Miasto extends JFrame {
                     Gracz.getGracz().gold -= 800;
                     Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
+                    Gracz.getGracz().setSword(sword);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Nie posiadasz wystarczająco złota");
@@ -187,6 +189,7 @@ public class Miasto extends JFrame {
                     Gracz.getGracz().gold -= 2000;
                     Gracz.getGracz().setMocAtaku(Gracz.getGracz().getMocAtaku()+ sword.getSwordPower());
                     goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
+                    Gracz.getGracz().setSword(sword);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Nie posiadasz wystarczająco złota");
