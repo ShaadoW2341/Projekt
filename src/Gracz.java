@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Gracz extends Postac
 {
+    private String name;
     private static Gracz gracz;
     public Lvl lvl;
     public int xp;
@@ -31,16 +32,29 @@ public class Gracz extends Postac
     }
 
 
-    private Gracz(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
+    private Gracz(String name, int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
     {
         super(iloscZycia, obrona, mocAtaku, klasa);
+        this.name = name;
         lvl = new Lvl(0);
-        ekwipunek.add(new Potion(PotionType.MediumHp));
+        ekwipunek.add(new Potion(PotionType.SmallHp));
     }
 
-    public static Gracz StworzGracza(int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
+    public static Gracz StworzGracza(String name, int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
     {
-        gracz = new Gracz(iloscZycia, obrona,mocAtaku, klasa);
+        gracz = new Gracz(name, iloscZycia, obrona,mocAtaku, klasa);
+        return  gracz;
+    }
+
+    public static Gracz StworzGraczaCopy(String name, int iloscZycia,int maxHp, int obrona, int mocAtaku,int gold, int xp, Klasa klasa) throws ClassNotChoosenException
+    {
+        gracz = new Gracz(name, iloscZycia, obrona,mocAtaku, klasa);
+        gracz.setIloscZycia(iloscZycia);
+        gracz.setObrona(obrona);
+        gracz.setMocAtaku(mocAtaku);
+        gracz.setMaxIloscZycia(maxHp);
+        gracz.gold = gold;
+        gracz.xp = xp;
         return  gracz;
     }
 
@@ -83,7 +97,7 @@ public class Gracz extends Postac
     }
 
     public void usePotion(PotionType typ){
-        
+
         Potion selectedPotion = null;
 
         for (var potion: this.ekwipunek) {
@@ -92,13 +106,13 @@ public class Gracz extends Postac
                 this.setIloscZycia(this.getIloscZycia() + selectedPotion.getPowerOfPotion());
             }
         }
-        
+
         if (selectedPotion == null)
             return;
 
         ekwipunek.remove(selectedPotion);
     }
-    
+
     public String getEqDescription(){
         var sb = new StringBuilder();
 
@@ -115,4 +129,8 @@ public class Gracz extends Postac
         ekwipunek.add(new Potion(potionType));
     }
 
+    public String getName()
+    {
+        return name;
+    }
 }

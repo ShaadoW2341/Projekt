@@ -1,3 +1,4 @@
+import DbConnection.GraczRepository;
 import Enums.PotionType;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class Miasto extends JFrame {
     private JButton PotionM;
     private JLabel goldValue;
     int width = 600, height = 400;
+    private GraczRepository graczRepository = new GraczRepository();
 
 
     public Miasto() {
@@ -34,8 +36,23 @@ public class Miasto extends JFrame {
         Back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Projekt();
+                new Przygoda();
                 dispose();
+            }
+        });
+        Save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                var gamer = Gracz.getGracz();
+                if (gamer.gold < 50){
+                    JOptionPane.showMessageDialog(null, "Nie posiadasz wystarczająco złota");
+                    return;
+                }
+                gamer.gold -= 50;
+                goldValue.setText("Ilość złota: " + Gracz.getGracz().gold);
+                graczRepository.UpdateGracz(gamer.getName(), gamer.gold, gamer.getObrona(),
+                        gamer.getIloscZycia(), gamer.getMaxIloscZycia(), Przygoda.getKilledenemies(), gamer.xp);
             }
         });
         button1.addActionListener(new ActionListener() {

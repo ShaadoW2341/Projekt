@@ -13,7 +13,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-16777216"/>
+        </properties>
         <border type="none"/>
         <children>
           <grid id="45afe" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -21,7 +23,9 @@
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-929960"/>
+            </properties>
             <border type="etched"/>
             <children>
               <component id="1b9c8" class="javax.swing.JLabel" binding="Stats">
@@ -40,6 +44,7 @@
                   <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -48,6 +53,7 @@
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -56,6 +62,7 @@
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="HP:"/>
                 </properties>
               </component>
@@ -64,6 +71,7 @@
                   <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -72,6 +80,7 @@
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="DEF:"/>
                 </properties>
               </component>
@@ -80,6 +89,7 @@
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -88,6 +98,7 @@
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="ATK:"/>
                 </properties>
               </component>
@@ -96,6 +107,7 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="XP"/>
                 </properties>
               </component>
@@ -128,6 +140,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="Punkty LVL:"/>
                 </properties>
               </component>
@@ -145,6 +158,7 @@
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -155,7 +169,9 @@
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-12169"/>
+            </properties>
             <border type="line"/>
             <children>
               <component id="c4246" class="javax.swing.JButton" binding="Back">
@@ -225,7 +241,9 @@
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-12169"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="87023" class="javax.swing.JLabel">
@@ -233,6 +251,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="Wyposażenie:"/>
                 </properties>
               </component>
@@ -241,6 +260,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <foreground color="-16777216"/>
                   <text value="Ilość zabitych przeciwników: "/>
                 </properties>
               </component>

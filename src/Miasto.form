@@ -13,7 +13,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-8032449"/>
+        </properties>
         <border type="none"/>
         <children>
           <tabbedpane id="a0ddc" binding="tabbedPane1" default-binding="true">
@@ -30,7 +32,9 @@
                 <constraints>
                   <tabbedpane title="Miasto"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-8623536"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="7b94f" class="javax.swing.JButton" binding="button1" default-binding="true">
@@ -49,7 +53,9 @@
                 <constraints>
                   <tabbedpane title="Zbrojmistrz"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-8623536"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="5b83b" class="javax.swing.JButton" binding="armorL">
@@ -107,7 +113,9 @@
                 <constraints>
                   <tabbedpane title="Kowal"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-8623536"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="36b07" class="javax.swing.JButton" binding="swordL">
@@ -165,7 +173,9 @@
                 <constraints>
                   <tabbedpane title="Alchemik"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-8623536"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="2792c" class="javax.swing.JButton" binding="PotionS">
@@ -223,7 +233,9 @@
                 <constraints>
                   <tabbedpane title="Katedra"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-8623536"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="88d22" class="javax.swing.JButton" binding="Save">
@@ -251,6 +263,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-394241"/>
               <text value="Ilość złota:"/>
             </properties>
           </component>

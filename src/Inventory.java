@@ -109,7 +109,7 @@ public class Inventory extends JFrame {
             Back.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    new Projekt();
+                    new Przygoda();
                     dispose();
                 }
             });
@@ -132,7 +132,7 @@ public class Inventory extends JFrame {
         gamerHp.setText(String.valueOf(String.valueOf(gamer.getIloscZycia())) + "/" + String.valueOf(gamer.getMaxIloscZycia()));
         gamerAttack.setText(String.valueOf(gamer.getMocAtaku()));
         gamerDef.setText(String.valueOf(gamer.getObrona()));
-        enemyCounter.setText("Zabici przeciwnicy: " + String.valueOf(Projekt.getKilledenemies()));
+        enemyCounter.setText("Zabici przeciwnicy: " + String.valueOf(Przygoda.getKilledenemies()));
         Stats.setText(WyborKlasy.getPlayerName());
     }
 }

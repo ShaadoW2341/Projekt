@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Projekt extends JFrame{
+public class Przygoda extends JFrame{
     private JPanel panel1;
     private JProgressBar enemyHpBar;
     private JButton Atak;
@@ -26,13 +26,13 @@ public class Projekt extends JFrame{
     private JLabel DEF;
     private JLabel enemyClass;
     private JLabel Stats;
-    private JLabel goldValue;
     private static int killedenemies;
     int width = 600, height = 400;
     private static Enemy enemy1;
-    private int goldFromBoss = 100;
+    private JLabel goldValue;
+    private int bossGold = 100;
 
-    public Projekt()
+    public Przygoda()
     {
         this.setLocationRelativeTo(null);
         this.setSize(width,height);
@@ -59,53 +59,53 @@ public class Projekt extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-               enemy1.AttackByGamer(Gracz.getGracz());
+                enemy1.AttackByGamer(Gracz.getGracz());
 
-               if (enemy1.isEnemyDead() && !enemy1.isEnemyDeadAndGatheredXp()){
-                   int xp = enemy1.getXp();
-                   Random random = new Random();
-                   int iloscZlota = random.nextInt(20)+10;
-                   przeciwnik.setText(enemy1.getNazwa()+ " wypuścił "+ iloscZlota + " złota");
-                   Gracz.getGracz().addXp(xp);
-                   Gracz.getGracz().addGold(iloscZlota);
-                   enemysKilled();
-                   if(killedenemies>=6){
-                       miastoButton.setEnabled(true);
-                       if(killedenemies==6) {
-                           JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!\n Za pokonanie Królowej otrzymujesz 100 złota");
-                           Gracz.getGracz().addGold(goldFromBoss);;
-                       }
-                   }
-                   newEnemy.setText("Następny Przeciwnik");
-               }
+                if (enemy1.isEnemyDead() && !enemy1.isEnemyDeadAndGatheredXp()){
+                    int xp = enemy1.getXp();
+                    Random random = new Random();
+                    int iloscZlota = random.nextInt(20)+10;
+                    przeciwnik.setText(enemy1.getNazwa()+ " wypuścił "+ iloscZlota + " złota");
+                    Gracz.getGracz().addXp(xp);
+                    Gracz.getGracz().addGold(iloscZlota);
+                    enemysKilled();
+                    if(killedenemies>=6){
+                        miastoButton.setEnabled(true);
+                        if(killedenemies==6) {
+                            JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!\n Za pokonanie Królowej otrzymujesz 100 złota");
+                            Gracz.getGracz().addGold(bossGold);
+                        }
+                    }
+                    newEnemy.setText("Następny Przeciwnik");
+                }
 
-               else if (!enemy1.isEnemyDead()){
-                   Gracz gracz = Gracz.getGracz();
-                   gracz.AttackByEnemy(enemy1);
-                   miastoButton.setEnabled(false);
+                else if (!enemy1.isEnemyDead()){
+                    Gracz gracz = Gracz.getGracz();
+                    gracz.AttackByEnemy(enemy1);
+                    miastoButton.setEnabled(false);
 
-                   if (!gracz.getStatus().equals(CharacterStatus.Alive)){
-                       SetUIForGamer();
-                       JOptionPane.showMessageDialog(null, "Umarłeś");
-                       killedenemies=0;
-                       enemy1 = null;
-                       new WyborKlasy();
-                       dispose();
-                       return;
-                   }
-               }
+                    if (!gracz.getStatus().equals(CharacterStatus.Alive)){
+                        SetUIForGamer();
+                        JOptionPane.showMessageDialog(null, "Umarłeś");
+                        killedenemies=0;
+                        enemy1 = null;
+                        new WyborKlasy();
+                        dispose();
+                        return;
+                    }
+                }
 
-               SetUIForGamer();
+                SetUIForGamer();
 
-               enemyHpBar.setValue(enemy1.getIloscZycia());
-               Hp.setText("Hp: " + enemy1.getIloscZycia());
+                enemyHpBar.setValue(enemy1.getIloscZycia());
+                Hp.setText("Hp: " + enemy1.getIloscZycia());
             }
         });
         newEnemy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Gracz gracz = Gracz.getGracz();
-                    newEnemy.setText("Uciekaj");
+                newEnemy.setText("Uciekaj");
                 if(!enemy1.isEnemyDead() && enemy1.getKlasa() == Klasa.lucznik) {
                     gracz.AttackByEnemy(enemy1);
                     if (!gracz.getStatus().equals(CharacterStatus.Alive)){
@@ -172,15 +172,11 @@ public class Projekt extends JFrame{
             return boss1();
         } else if (killedenemies%5==0) {
             int wylosowanaBossLiczba = random.nextInt(EnemyEasyConsts.getBossListLength());
-            Gracz.getGracz().addGold(goldFromBoss);
+            Gracz.getGracz().addGold(bossGold);
             return EnemyEasyConsts.GetBossEnemy(wylosowanaBossLiczba);
-        } else if(killedenemies<=30){
+        } else {
             int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
             return EnemyEasyConsts.GetMidEnemy(wylosowanaMidLiczba);
-        }
-        else {
-            int wylosowanaHardLiczba = random.nextInt(EnemyEasyConsts.getEnemyHardListLength());
-            return EnemyEasyConsts.GetHardEnemy(wylosowanaHardLiczba);
         }
     }
     private Enemy boss1(){
@@ -194,5 +190,9 @@ public class Projekt extends JFrame{
 
     public static int getKilledenemies() {
         return killedenemies;
+    }
+
+    public static void setKilledenemies(int enemies) {
+        killedenemies = enemies;
     }
 }
