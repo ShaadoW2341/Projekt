@@ -20,7 +20,7 @@ public class EnemyEasyConsts
                     new Enemy(4, 2, 3, "Wielki pająk", 20,Klasa.lucznik),
             };
             customEnemy = new Enemy[]{
-                    new Enemy(40, 3, 2, "Królowa Szczurów",200,Klasa.wojownik),
+                    new Enemy(40, 3, 2, "Królowa Szczurów",200,Klasa.boss),
             };
             _enemyList = new Enemy[]{
                     new Enemy(10, 2, 6, "Szkielet łucznik",60,Klasa.lucznik),
@@ -37,9 +37,9 @@ public class EnemyEasyConsts
                     new Enemy(15, 5, 8, "Goblin Złodziej", 40, Klasa.wojownik),
             };
             _bossList = new Enemy[]{
-                    new Enemy(50, 5, 3, "Szkieleci Hrabia",150,Klasa.wojownik),
-                    new Enemy(35, 2, 7, "Gang Goblinów",250,Klasa.lucznik),
-                    new Enemy(75, 4, 3, "Gnom Krzyś",20,Klasa.lucznik),
+                    new Enemy(50, 5, 3, "Szkieleci Hrabia",150,Klasa.boss),
+                    new Enemy(35, 2, 7, "Gang Goblinów",250,Klasa.boss),
+                    new Enemy(75, 4, 3, "Gigant",300,Klasa.boss),
 
             };
         } catch (ClassNotChoosenException e) {

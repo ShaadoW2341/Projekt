@@ -35,12 +35,15 @@ public class WyborKlasy extends JFrame {
 
                     String name = nameCharacter.getText();
                     savePlayerName(name);
-                    if(name.equals(null)||name.equals(""))return;
+                    if(name.equals(null)||name.equals("")){
+                        JOptionPane.showMessageDialog(null, "Musisz wpisać nazwę");
+                        return;
+                    }
 
                     var graczDb = repo.GetGracz(name);
 
                     if (graczDb == null){
-                        gracz = Gracz.StworzGracza(name, 30000, 2, 8, Klasa.lucznik);
+                        gracz = Gracz.StworzGracza(name, 50, 2, 8, Klasa.lucznik);
                         repo.CreateGracz(name, gracz.gold,gracz.getObrona(), gracz.getIloscZycia(), gracz.getMaxIloscZycia(), 0, gracz.getXp());
                     }
                     else {
@@ -61,12 +64,16 @@ public class WyborKlasy extends JFrame {
                 try {
                     String name = nameCharacter.getText();
                     savePlayerName(name);
-                    if(name.equals(null)||name.equals("")) return;
+                    if(name.equals(null)||name.equals("")){
+                        JOptionPane.showMessageDialog(null, "Musisz wpisać nazwę");
+                        return;
+                    }
+
 
                     var graczDb = repo.GetGracz(name);
 
                     if (graczDb == null){
-                        gracz = Gracz.StworzGracza(name,30, 4, 6, Klasa.wojownik);
+                        gracz = Gracz.StworzGracza(name,50, 4, 6, Klasa.wojownik);
                         repo.CreateGracz(name, gracz.gold,gracz.getObrona(), gracz.getIloscZycia(), gracz.getMaxIloscZycia(), 0, gracz.getXp());
                     }
                     else {

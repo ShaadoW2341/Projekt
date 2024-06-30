@@ -51,6 +51,12 @@ public class Przygoda extends JFrame{
         SetUIForNewEnemy();
         SetUIForGamer();
 
+        if (enemy1.getKlasa().equals(Klasa.boss) && (enemy1.isEnemyDead() || enemy1.isEnemyDeadAndGatheredXp())){
+            newEnemy.setEnabled(true);
+        }
+        else if (enemy1.getKlasa().equals(Klasa.boss)){
+            newEnemy.setEnabled(false);
+        }
         if(killedenemies>=5&&enemy1.isEnemyDead()){
             miastoButton.setEnabled(true);
         }
@@ -75,6 +81,10 @@ public class Przygoda extends JFrame{
                             JOptionPane.showMessageDialog(null, "Teraz możesz odwiedzić miasto!\n Za pokonanie Królowej otrzymujesz 100 złota");
                             Gracz.getGracz().addGold(bossGold);
                         }
+                        else if(enemy1.getKlasa().equals(Klasa.boss)) {
+                            JOptionPane.showMessageDialog(null, "Za pokonanie Bossa otrzymujesz 100 złota");
+                            Gracz.getGracz().addGold(bossGold);
+                        }
                     }
                     newEnemy.setText("Następny Przeciwnik");
                 }
@@ -95,6 +105,10 @@ public class Przygoda extends JFrame{
                     }
                 }
 
+                if (enemy1.getKlasa().equals(Klasa.boss) && (enemy1.isEnemyDead() || enemy1.isEnemyDeadAndGatheredXp())){
+                    newEnemy.setEnabled(true);
+                }
+
                 SetUIForGamer();
 
                 enemyHpBar.setValue(enemy1.getIloscZycia());
@@ -106,6 +120,7 @@ public class Przygoda extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 Gracz gracz = Gracz.getGracz();
                 newEnemy.setText("Uciekaj");
+
                 if(!enemy1.isEnemyDead() && enemy1.getKlasa() == Klasa.lucznik) {
                     gracz.AttackByEnemy(enemy1);
                     if (!gracz.getStatus().equals(CharacterStatus.Alive)){
@@ -125,6 +140,10 @@ public class Przygoda extends JFrame{
                 else{
                     enemy1 = GenerateNewEnemy1();
                     SetUIForNewEnemy();
+                }
+
+                if (enemy1.getKlasa().equals(Klasa.boss)){
+                    newEnemy.setEnabled(false);
                 }
             }
         });
@@ -175,7 +194,7 @@ public class Przygoda extends JFrame{
             Gracz.getGracz().addGold(bossGold);
             return EnemyEasyConsts.GetBossEnemy(wylosowanaBossLiczba);
         } else {
-            int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyListLength());
+            int wylosowanaMidLiczba = random.nextInt(EnemyEasyConsts.getEnemyHardListLength());
             return EnemyEasyConsts.GetMidEnemy(wylosowanaMidLiczba);
         }
     }

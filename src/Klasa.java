@@ -30,5 +30,5 @@ public class Klasa {
 
     static Klasa wojownik = new Klasa("Wojownik", 10, 2, 3);
     static Klasa lucznik = new Klasa("Lucznik", 5, 1, 6);
-
+    static Klasa boss = new Klasa("Boss", 10, 5, 3);
 }

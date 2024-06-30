@@ -37,7 +37,7 @@ public class Gracz extends Postac
         super(iloscZycia, obrona, mocAtaku, klasa);
         this.name = name;
         lvl = new Lvl(0);
-        ekwipunek.add(new Potion(PotionType.SmallHp));
+        ekwipunek.add(new Potion(PotionType.MediumHp));
     }
 
     public static Gracz StworzGracza(String name, int iloscZycia, int obrona, int mocAtaku, Klasa klasa) throws ClassNotChoosenException
